@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEO BST Visualizer | Advanced Binary Search Tree Explorer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -110,11 +110,11 @@
             <div class="input-group" style="margin-top: 1.5rem;">
                 <div class="input-field">
                     <label for="nodeValue1">First Node</label>
-                    <input type="number" id="nodeValue1" placeholder="Enter first node for LCA or Diameter">
+                    <input type="number" id="nodeValue1" placeholder="Enter first node for LCA or to findDiameter">
                 </div>
                 <div class="input-field">
                     <label for="nodeValue2">Second Node</label>
-                    <input type="number" id="nodeValue2" placeholder="Enter second node for LCA or Diameter">
+                    <input type="number" id="nodeValue2" placeholder="Enter second node for LCA or to findDiameter">
                 </div>
                 <button class="action-btn btn-lca" onclick="findLCA()" data-tooltip="Find lowest common ancestor">
                     <i class="fas fa-handshake"></i> Find LCA
@@ -123,8 +123,9 @@
         </div>
 
         <!-- Tree Visualization -->
-        <div class="tree-container" id="tree-container">
+        <div class="tree-container">
             <svg id="bstTree">
+       
                 <text id="output-text" x="50%" y="95%" text-anchor="middle"></text>
             </svg>
         </div>
@@ -151,6 +152,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
+        
         <div class="panel-section">
             <h4>Theme Color</h4>
             <div class="theme-options">
@@ -161,6 +163,7 @@
                 <div class="theme-option" style="background: linear-gradient(135deg, #0984E3, #74B9FF);" onclick="changeTheme('blue')"></div>
             </div>
         </div>
+
         <div class="panel-section">
             <h4>Zoom Level</h4>
             <div class="zoom-controls">
@@ -173,13 +176,14 @@
                 </button>
             </div>
         </div>
+
         <div class="panel-section">
             <h4>Background</h4>
             <div class="bg-options">
-                <div class="bg-option selected" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');" onclick="changeBackground('tree1')"></div>
-                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2076&q=80');" onclick="changeBackground('tree2')"></div>
-                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');" onclick="changeBackground('forest')"></div>
-                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80');" onclick="changeBackground('leaves')"></div>
+                <div class="bg-option selected" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');" onclick="changeBackground('tree1')"></div>
+                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80');" onclick="changeBackground('tree2')"></div>
+                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');" onclick="changeBackground('forest')"></div>
+                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');" onclick="changeBackground('leaves')"></div>
             </div>
         </div>
     </div>
@@ -192,6 +196,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
+        
         <div class="panel-section">
             <h4>Basic Operations</h4>
             <ul>
@@ -201,6 +206,7 @@
                 <li style="color: #2D3436;"><strong>Find Min/Max:</strong> Find minimum or maximum value</li>
             </ul>
         </div>
+
         <div class="panel-section">
             <h4>Traversals</h4>
             <ul>
@@ -210,6 +216,7 @@
                 <li style="color: #2D3436;"><strong>Level Order:</strong> Breadth-first traversal</li>
             </ul>
         </div>
+
         <div class="panel-section">
             <h4>Advanced Features</h4>
             <ul>
@@ -217,7 +224,19 @@
                 <li style="color: #2D3436;"><strong>Find Sibling:</strong> Find node's sibling</li>
                 <li style="color: #2D3436;"><strong>Find Ancestors:</strong> Show all ancestors of a node</li>
                 <li style="color: #2D3436;"><strong>Find LCA:</strong> Find lowest common ancestor of two nodes</li>
-                <li style="color: #2D3436;"><strong>Diameter:</strong> Find distance between two nodes</li>
+                <p style="color: #2D3436;">Note:</p>
+                <p style="color: #2D3436;"><strong>two input boxes which is leftside to FindLCA Button it is applicable for both LCA(Lowest Common ancestor) and findDiameter</strong></p>
+                <li style="color: #2D3436;"><strong>Diameter:</strong>Find Diameter between two nodes</li>
+            </ul>
+        </div>
+
+        <div class="panel-section">
+            <h4>Tips</h4>
+            <ul>
+                <li style="color: #2D3436;">Use the settings panel to customize your experience</li>
+                <li style="color: #2D3436;">Hover over buttons to see tooltips</li>
+                <li style="color: #2D3436;">Watch animations to understand operations</li>
+                <li style="color: #2D3436;">Try different themes and backgrounds</li>
             </ul>
         </div>
     </div>
@@ -225,7 +244,7 @@
     <!-- Message Box -->
     <div id="message-box">
         <div id="message-content"></div>
-        <button id="message-close" onclick="hideMessageBox()">
+        <button id="message-close">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -234,23 +253,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="BST.js"></script>
-
+    
     <script>
-        // UI Control Functions
+        // UI Control Functions (keep these separate from BST.js)
         function startVisualizer() {
             document.getElementById('welcome-page').style.display = 'none';
-            document.getElementById('visualizer-content').style.display = 'flex';
-            document.getElementById('visualizer-content').style.flexDirection = 'column';
-            setupInteractionHandlers();
-            bst.render(); // Initial render of the BST
+            document.getElementById('visualizer-content').style.display = 'block';
         }
 
         function goHome() {
-            document.getElementById('visualizer-content').style.display = 'none';
-            document.getElementById('welcome-page').style.display = 'flex';
-            closeAllPanels();
-            resetTransform(); // Reset zoom and pan on home
-        }
+    // Navigate to Visualization.html instead of toggling visibility
+    window.location.href = 'Visulization.html';
+    
+    // Optional: Close any open panels before navigating
+    closeAllPanels();
+}
 
         function toggleSettings() {
             document.getElementById('settings-panel').classList.toggle('open');
@@ -268,172 +285,97 @@
         }
 
         function changeTheme(theme) {
+            // Remove all theme classes first
             document.body.classList.remove('theme-default', 'theme-dark', 'theme-red', 'theme-green', 'theme-blue');
+            
+            // Add the selected theme class
             document.body.classList.add('theme-' + theme);
-            document.querySelectorAll('.theme-option').forEach(option => option.classList.remove('selected'));
+            
+            // Update selected state for theme options
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('selected');
+            });
             event.target.classList.add('selected');
         }
 
         function changeBackground(bg) {
-            const bgUrl = event.target.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/)[1];
-            document.body.style.backgroundImage = `url(${bgUrl})`;
-            document.querySelectorAll('.bg-option').forEach(option => option.classList.remove('selected'));
+            // This would change the background image
+            // Implementation depends on how you want to handle backgrounds
+            document.querySelectorAll('.bg-option').forEach(option => {
+                option.classList.remove('selected');
+            });
             event.target.classList.add('selected');
         }
 
-        // Zoom and Pan Variables
-        window.scale = 1;
-        window.translateX = 0;
-        window.translateY = 0;
-        let pinchStartDist = 0;
-        let isPanning = false;
-        let startX = 0, startY = 0;
-
         function zoomIn() {
-            window.scale = Math.min(5, window.scale + 0.1);
-            updateTransform();
-            bst.render(); // Re-render BST with new scale
+            // Zoom in implementation
+            const treeContainer = document.querySelector('.tree-container');
+            let currentZoom = parseFloat(treeContainer.style.transform?.replace('scale(', '')?.replace(')', '')) || 1;
+            currentZoom += 0.1;
+            treeContainer.style.transform = `scale(${currentZoom})`;
+            document.getElementById('zoom-value').textContent = `${Math.round(currentZoom * 100)}%`;
         }
 
         function zoomOut() {
-            window.scale = Math.max(0.5, window.scale - 0.1);
-            updateTransform();
-            bst.render(); // Re-render BST with new scale
+            // Zoom out implementation
+            const treeContainer = document.querySelector('.tree-container');
+            let currentZoom = parseFloat(treeContainer.style.transform?.replace('scale(', '')?.replace(')', '')) || 1;
+            currentZoom = Math.max(0.5, currentZoom - 0.1);
+            treeContainer.style.transform = `scale(${currentZoom})`;
+            document.getElementById('zoom-value').textContent = `${Math.round(currentZoom * 100)}%`;
         }
 
-        function resetTransform() {
-            window.scale = 1;
-            window.translateX = 0;
-            window.translateY = 0;
-            updateTransform();
-            bst.render();
+        function resetZoom() {
+            // Reset zoom implementation
+            const treeContainer = document.querySelector('.tree-container');
+            treeContainer.style.transform = 'scale(1)';
+            document.getElementById('zoom-value').textContent = '100%';
         }
 
-        function updateTransform() {
-            const treeContainer = document.getElementById('tree-container');
-            treeContainer.style.transform = `translate(${window.translateX}px, ${window.translateY}px) scale(${window.scale})`;
-            treeContainer.style.transformOrigin = 'center center';
-            document.getElementById('zoom-value').textContent = `${Math.round(window.scale * 100)}%`;
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    showMessage('Error attempting to enable fullscreen: ' + err.message, 'error');
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        function showMessage(message, type = 'info') {
+            const messageBox = document.getElementById('message-box');
+            messageBox.className = '';
+            messageBox.classList.add(type);
+            document.getElementById('message-content').textContent = message;
+            messageBox.classList.add('show');
+            
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000);
         }
 
         function hideMessageBox() {
             document.getElementById('message-box').classList.remove('show');
         }
 
-        // Interaction Handlers (Mouse and Touch)
-        function setupInteractionHandlers() {
-            const treeContainer = document.getElementById('tree-container');
+        // Close message box when clicking the close button
+        document.getElementById('message-close').addEventListener('click', hideMessageBox);
 
-            // Mouse Events
-            treeContainer.addEventListener('mousedown', handleMouseStart);
-            treeContainer.addEventListener('mousemove', handleMouseMove);
-            treeContainer.addEventListener('mouseup', handleMouseEnd);
-            treeContainer.addEventListener('wheel', handleWheel);
-
-            // Touch Events
-            treeContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
-            treeContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
-            treeContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
-
-            // Tooltip for Mobile
-            document.querySelectorAll('[data-tooltip]').forEach(btn => {
-                btn.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    const tooltip = btn.getAttribute('data-tooltip');
-                    const messageBox = document.getElementById('message-box');
-                    messageBox.classList.add('show', 'info');
-                    document.getElementById('message-content').textContent = tooltip;
-                    setTimeout(() => messageBox.classList.remove('show'), 2000);
-                });
-            });
-        }
-
-        // Mouse Interaction
-        function handleMouseStart(e) {
-            isPanning = true;
-            startX = e.clientX - window.translateX;
-            startY = e.clientY - window.translateY;
-        }
-
-        function handleMouseMove(e) {
-            if (!isPanning) return;
-            window.translateX = e.clientX - startX;
-            window.translateY = e.clientY - startY;
-            updateTransform();
-        }
-
-        function handleMouseEnd() {
-            isPanning = false;
-        }
-
-        function handleWheel(e) {
-            e.preventDefault();
-            const delta = e.deltaY > 0 ? -0.1 : 0.1;
-            window.scale = Math.max(0.5, Math.min(5, window.scale + delta));
-            updateTransform();
-            bst.render();
-        }
-
-        // Touch Interaction
-        function handleTouchStart(e) {
-            if (e.touches.length === 1) {
-                isPanning = true;
-                startX = e.touches[0].clientX - window.translateX;
-                startY = e.touches[0].clientY - window.translateY;
-            } else if (e.touches.length === 2) {
-                pinchStartDist = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
-                );
-                isPanning = false;
-            }
-            e.preventDefault();
-        }
-
-        function handleTouchMove(e) {
-            if (e.touches.length === 1 && isPanning) {
-                window.translateX = e.touches[0].clientX - startX;
-                window.translateY = e.touches[0].clientY - startY;
-                updateTransform();
-            } else if (e.touches.length === 2) {
-                const currentDist = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
-                );
-                const scaleChange = currentDist / pinchStartDist;
-                window.scale = Math.max(0.5, Math.min(5, window.scale * scaleChange));
-                pinchStartDist = currentDist;
-
-                // Adjust translation to zoom around pinch center
-                const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-                const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-                window.translateX = midX - (midX - window.translateX) * scaleChange;
-                window.translateY = midY - (midY - window.translateY) * scaleChange;
-
-                updateTransform();
-                bst.render();
-            }
-            e.preventDefault();
-        }
-
-        function handleTouchEnd(e) {
-            if (e.touches.length === 0) isPanning = false;
-            if (e.touches.length < 2) pinchStartDist = 0;
-        }
-
-        // Panel Click Handling
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.panel') && !e.target.closest('.floating-btn')) {
+        // Close panels when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.panel') && !event.target.closest('.floating-btn')) {
                 closeAllPanels();
             }
         });
 
+        // Prevent panels from closing when clicking inside them
         document.querySelectorAll('.panel').forEach(panel => {
-            panel.addEventListener('click', (e) => e.stopPropagation());
+            panel.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
         });
-
-        // Initialize
-        setupMobileFeatures();
     </script>
 </body>
 </html>

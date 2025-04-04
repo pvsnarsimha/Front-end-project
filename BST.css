@@ -1,3 +1,4 @@
+
 :root {
     --primary: #6C5CE7;
     --secondary: #00CEFF;
@@ -21,7 +22,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -31,7 +31,6 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
-    touch-action: manipulation;
 }
 
 body::before {
@@ -75,7 +74,7 @@ body::before {
 }
 
 #welcome-page h1 {
-    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-size: 3.5rem;
     font-weight: 900;
     margin-bottom: 1.5rem;
     background: linear-gradient(to right, var(--primary), var(--secondary));
@@ -87,19 +86,18 @@ body::before {
 }
 
 #welcome-page p {
-    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-size: 1.5rem;
     margin-bottom: 3rem;
     max-width: 800px;
     line-height: 1.6;
     opacity: 0.9;
     animation: fadeInUp 1s ease-out 0.2s forwards;
     opacity: 0;
-    padding: 0 1rem;
 }
 
 #namaste-image {
-    width: clamp(150px, 40vw, 250px);
-    height: clamp(150px, 40vw, 250px);
+    width: 250px;
+    height: 250px;
     object-fit: contain;
     margin-bottom: 2rem;
     filter: drop-shadow(0 10px 20px rgba(47, 0, 255, 0.888));
@@ -111,7 +109,7 @@ body::before {
     color: white;
     border: none;
     padding: 1rem 2.5rem;
-    font-size: clamp(1rem, 4vw, 1.2rem);
+    font-size: 1.2rem;
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
@@ -149,21 +147,20 @@ body::before {
 /* Main Visualizer Content */
 #visualizer-content {
     display: none;
-    padding: 1rem;
+    padding: 2rem;
     max-width: 1600px;
     margin: 0 auto;
 }
 
 .visualizer-header {
     text-align: center;
-    margin-bottom: 1.5rem;
-    padding: 0 1rem;
+    margin-bottom: 2rem;
 }
 
 .visualizer-header h2 {
-    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     background: linear-gradient(to right, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
@@ -171,7 +168,7 @@ body::before {
 }
 
 .visualizer-header p {
-    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    font-size: 1.1rem;
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
@@ -181,32 +178,33 @@ body::before {
 .control-panel {
     background: var(--glass);
     backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
+
 }
 
 .input-group {
     display: flex;
-    gap: 0.8rem;
-    margin-bottom: 1rem;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
 }
 
 .input-field {
     flex: 1;
-    min-width: 150px;
+    min-width: 200px;
     position: relative;
 }
 
 .input-field input {
     width: 100%;
-    padding: 0.8rem 1rem;
+    padding: 0.8rem 1.2rem;
     background: rgba(244, 240, 240, 0.974);
     border: 1px solid rgba(246, 244, 244, 0.938);
-    border-radius: 10px;
+    border-radius: 12px;
     color: rgba(14, 15, 15, 0.947);
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -221,41 +219,35 @@ body::before {
 
 .input-field label {
     position: absolute;
-    left: 1rem;
+    left: 1.2rem;
     top: -0.6rem;
     background: var(--dark);
     padding: 0 0.5rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: var(--secondary);
     border-radius: 4px;
 }
 
 .button-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 0.6rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.8rem;
 }
 
 .action-btn {
-    padding: 0.7rem;
+    padding: 0.8rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     position: relative;
     overflow: hidden;
     color: white;
-    font-size: 0.85rem;
-    min-height: 40px;
-}
-
-.action-btn i {
-    font-size: 0.9rem;
 }
 
 .action-btn::before {
@@ -278,7 +270,6 @@ body::before {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Button Colors */
 .btn-insert { background: var(--primary); }
 .btn-delete { background: var(--danger); }
 .btn-search { background: var(--success); }
@@ -302,21 +293,18 @@ body::before {
 .tree-container {
     background: var(--glass);
     backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 1rem;
+    border-radius: 20px;
+    padding: 2rem;
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
     overflow: auto;
-    touch-action: pan-y;
-    -webkit-overflow-scrolling: touch;
 }
 
 #bstTree {
     width: 100%;
-    height: 400px;
-    min-height: 300px;
+    height: 500px;
     background: rgb(239, 239, 241);
-    border-radius: 10px;
+    border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -351,7 +339,7 @@ body::before {
 
 text {
     fill: white;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     pointer-events: none;
 }
@@ -365,17 +353,17 @@ line {
 /* Floating Controls */
 .floating-controls {
     position: fixed;
-    right: 1rem;
-    top: 1rem;
+    right: 2rem;
+    top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
     z-index: 1000;
 }
 
 .floating-btn {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -387,13 +375,13 @@ line {
     cursor: pointer;
     transition: all 0.3s ease;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .floating-btn:hover {
     transform: translateY(-3px) scale(1.05);
-    background: rgba(29, 7, 224, 0.861);
-    box-shadow: 0 10px 20px rgba(32, 5, 237, 0.922);
+    background: rgba(108, 92, 231, 0.3);
+    box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
 }
 
 .floating-btn i {
@@ -403,16 +391,16 @@ line {
 /* Panels */
 .panel {
     position: fixed;
-    right: 1rem;
-    top: 6rem;
+    right: 2rem;
+    top: 8rem;
     background: var(--glass);
     backdrop-filter: blur(20px);
-    border-radius: 15px;
-    padding: 1rem;
+    border-radius: 20px;
+    padding: 1.5rem;
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
-    width: 90%;
-    max-width: 350px;
+    width: 350px;
+    max-width: 90vw;
     transform: translateX(120%);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
     z-index: 999;
@@ -428,13 +416,13 @@ line {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .panel-header h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--secondary);
 }
 
@@ -442,7 +430,7 @@ line {
     background: none;
     border: none;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     cursor: pointer;
     opacity: 0.7;
     transition: opacity 0.2s ease;
@@ -453,24 +441,25 @@ line {
 }
 
 .panel-section {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .panel-section h4 {
-    font-size: 0.95rem;
-    margin-bottom: 0.7rem;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
     color: var(--secondary);
+    color: #2D3436;
 }
 
 .theme-options {
     display: flex;
-    gap: 0.7rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
 }
 
 .theme-option {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid transparent;
@@ -485,12 +474,12 @@ line {
 .zoom-controls {
     display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.8rem;
 }
 
 .zoom-btn {
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     border: none;
@@ -507,20 +496,19 @@ line {
 }
 
 .zoom-value {
-    min-width: 45px;
+    min-width: 50px;
     text-align: center;
-    font-size: 0.9rem;
 }
 
 .bg-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.7rem;
+    gap: 0.8rem;
 }
 
 .bg-option {
-    height: 70px;
-    border-radius: 8px;
+    height: 80px;
+    border-radius: 10px;
     background-size: cover;
     background-position: center;
     cursor: pointer;
@@ -551,11 +539,11 @@ line {
 
 /* Help Panel Content */
 .help-section {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 .help-section h4 {
-    font-size: 0.95rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
     color: var(--secondary);
 }
@@ -565,8 +553,8 @@ line {
 }
 
 .help-section li {
-    margin-bottom: 0.4rem;
-    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     padding-left: 1rem;
     position: relative;
@@ -582,16 +570,16 @@ line {
 /* Message Box */
 #message-box {
     position: fixed;
-    top: 1.5rem;
+    top: 2rem;
     left: 50%;
     transform: translateX(-50%) translateY(-150%);
     background: rgba(45, 52, 54, 0.95);
-    border-radius: 10px;
-    padding: 0.8rem 1.2rem;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border-left: 5px solid var(--primary);
     max-width: 90%;
-    width: 400px;
+    width: 500px;
     z-index: 1100;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
     display: flex;
@@ -610,16 +598,16 @@ line {
 
 #message-content {
     flex: 1;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 #message-close {
     background: none;
     border: none;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    margin-left: 0.8rem;
+    margin-left: 1rem;
     opacity: 0.7;
     transition: opacity 0.2s ease;
 }
@@ -651,22 +639,6 @@ line {
     100% { transform: scale(1); }
 }
 
-/* Mobile-specific styles */
-.mobile-tooltip {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    z-index: 1001;
-    max-width: 90%;
-    text-align: center;
-}
-
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
     .button-grid {
@@ -682,34 +654,31 @@ line {
     #welcome-page p {
         font-size: 1.2rem;
     }
-    #visualizer-content {
-        padding: 0.8rem;
+
+    .visualizer-header h2 {
+        font-size: 2rem;
     }
-    
-    .control-panel {
-        padding: 0.8rem;
+
+    .input-group {
+        flex-direction: column;
     }
-    
+
+    .input-field {
+        min-width: 100%;
+    }
+
     .button-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
-    
-    .action-btn {
-        padding: 0.6rem;
-        font-size: 0.8rem;
-        min-height: 36px;
+
+    .floating-controls {
+        right: 1rem;
+        top: 1rem;
     }
-    
-    .action-btn i {
-        font-size: 0.8rem;
-    }
-    
-    .tree-container {
-        padding: 0.8rem;
-    }
-    
-    #bstTree {
-        height: 350px;
+
+    .panel {
+        width: 90vw;
+        right: 1rem;
     }
 }
 
@@ -722,12 +691,32 @@ line {
         width: 100%;
     }
 }
-    [data-tooltip]::after {
-        display: none;
-    }
 
-@media (max-width: 360px) {
-    .button-grid {
-        grid-template-columns: 1fr;
-    }
+/* Tooltip */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(45, 52, 54, 0.9);
+    color: rgba(4, 1, 1, 0.918);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    margin-bottom: 0.5rem;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
