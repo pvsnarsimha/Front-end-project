@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>NEO BST Visualizer | Advanced Binary Search Tree Explorer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./BST.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-page">
+        <h1 style="color: white;">NEO BST VISUALIZER</h1>
+        <img id="namaste-image" src="https://cdn.pixabay.com/photo/2016/11/29/08/41/apple-1868496_1280.jpg" alt="Binary Tree">
+        <p>Experience binary search trees like never before with our advanced visualization tool. Explore, interact, and master BST operations with stunning visuals.</p>
+        <button class="start-btn" onclick="startVisualizer()">
+            <i class="fas fa-play"></i> Begin Exploration
+        </button>
+    </div>
+
+    <!-- Main Visualizer Content -->
+    <div id="visualizer-content">
+        <div class="visualizer-header">
+            <h2 style="color: white;">NEO BST VISUALIZER</h2>
+            <p>Interactive visualization of Binary Search Tree operations with real-time animations and advanced features</p>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="nodeValue">Node Value</label>
+                    <input type="number" id="nodeValue" placeholder="Enter node value">
+                </div>
+            </div>
+
+            <div class="button-grid">
+                <button class="action-btn btn-insert" onclick="insertNode()" data-tooltip="Insert a node">
+                    <i class="fas fa-plus"></i> Insert
+                </button>
+                <button class="action-btn btn-delete" onclick="deleteNode()" data-tooltip="Delete a node">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+                <button class="action-btn btn-search" onclick="searchNode()" data-tooltip="Search for a node">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                <button class="action-btn btn-min" onclick="findMinNode()" data-tooltip="Find minimum value">
+                    <i class="fas fa-arrow-down"></i> Min
+                </button>
+                <button class="action-btn btn-max" onclick="findMaxNode()" data-tooltip="Find maximum value">
+                    <i class="fas fa-arrow-up"></i> Max
+                </button>
+                <button class="action-btn btn-sibling" onclick="findSibling()" data-tooltip="Find sibling">
+                    <i class="fas fa-code-branch"></i> Sibling
+                </button>
+                <button class="action-btn btn-traversal" onclick="preorderTraversal()" data-tooltip="Preorder traversal">
+                    <i class="fas fa-project-diagram"></i> Preorder
+                </button>
+                <button class="action-btn btn-traversal" onclick="inorderTraversal()" data-tooltip="Inorder traversal">
+                    <i class="fas fa-project-diagram"></i> Inorder
+                </button>
+                <button class="action-btn btn-traversal" onclick="postorderTraversal()" data-tooltip="Postorder traversal">
+                    <i class="fas fa-project-diagram"></i> Postorder
+                </button>
+                <button class="action-btn btn-traversal" onclick="levelOrderTraversal()" data-tooltip="Level order traversal">
+                    <i class="fas fa-layer-group"></i> Level Order
+                </button>
+                <button class="action-btn btn-height" onclick="findHeight()" data-tooltip="Find tree height">
+                    <i class="fas fa-ruler-vertical"></i> Height
+                </button>
+                <button class="action-btn btn-balance" onclick="convertToBalancedBST()" data-tooltip="Balance the BST">
+                    <i class="fas fa-balance-scale"></i> Balance
+                </button>
+                <button class="action-btn btn-depth" onclick="findDepth()" data-tooltip="Find node depth">
+                    <i class="fas fa-ruler"></i> Depth
+                </button>
+                <button class="action-btn btn-successor" onclick="findSuccessor()" data-tooltip="Find successor">
+                    <i class="fas fa-step-forward"></i> Successor
+                </button>
+                <button class="action-btn btn-predecessor" onclick="findPredecessor()" data-tooltip="Find predecessor">
+                    <i class="fas fa-step-backward"></i> Predecessor
+                </button>
+                <button class="action-btn btn-ancestors" onclick="findAncestors()" data-tooltip="Find ancestors">
+                    <i class="fas fa-sitemap"></i> Ancestors
+                </button>
+                <button class="action-btn btn-check" onclick="checkIfBST()" data-tooltip="Check BST property">
+                    <i class="fas fa-check"></i> Check BST
+                </button>
+                <button class="action-btn btn-subtree" onclick="findMinLeftSubtree()" data-tooltip="Min in left subtree">
+                    <i class="fas fa-arrow-circle-left"></i> Min Left
+                </button>
+                <button class="action-btn btn-subtree" onclick="findMaxLeftSubtree()" data-tooltip="Max in left subtree">
+                    <i class="fas fa-arrow-circle-left"></i> Max Left
+                </button>
+                <button class="action-btn btn-subtree" onclick="findMinRightSubtree()" data-tooltip="Min in right subtree">
+                    <i class="fas fa-arrow-circle-right"></i> Min Right
+                </button>
+                <button class="action-btn btn-subtree" onclick="findMaxRightSubtree()" data-tooltip="Max in right subtree">
+                    <i class="fas fa-arrow-circle-right"></i> Max Right
+                </button>
+                <button class="action-btn btn-sum" onclick="calculateSum()" data-tooltip="Sum of all nodes">
+                    <i class="fas fa-calculator"></i> Sum Nodes
+                </button>
+                <button class="action-btn btn-diameter" onclick="findDiameter()" data-tooltip="Find distance between two nodes">
+                    <i class="fas fa-expand"></i> Diameter
+                </button>
+            </div>
+
+            <div class="input-group" style="margin-top: 1.5rem;">
+                <div class="input-field">
+                    <label for="nodeValue1">First Node</label>
+                    <input type="number" id="nodeValue1" placeholder="Enter first node for LCA or Diameter">
+                </div>
+                <div class="input-field">
+                    <label for="nodeValue2">Second Node</label>
+                    <input type="number" id="nodeValue2" placeholder="Enter second node for LCA or Diameter">
+                </div>
+                <button class="action-btn btn-lca" onclick="findLCA()" data-tooltip="Find lowest common ancestor">
+                    <i class="fas fa-handshake"></i> Find LCA
+                </button>
+            </div>
+        </div>
+
+        <!-- Tree Visualization -->
+        <div class="tree-container" id="tree-container">
+            <svg id="bstTree">
+                <text id="output-text" x="50%" y="95%" text-anchor="middle"></text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Floating Controls -->
+    <div class="floating-controls">
+        <div class="floating-btn" id="settings-toggle" onclick="toggleSettings()">
+            <i class="fas fa-cog"></i>
+        </div>
+        <div class="floating-btn" id="help-toggle" onclick="toggleHelp()">
+            <i class="fas fa-question"></i>
+        </div>
+        <div class="floating-btn" id="home-toggle" onclick="goHome()">
+            <i class="fas fa-home"></i>
+        </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="panel" id="settings-panel">
+        <div class="panel-header">
+            <h3>Visual Settings</h3>
+            <button class="panel-close" onclick="toggleSettings()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="panel-section">
+            <h4>Theme Color</h4>
+            <div class="theme-options">
+                <div class="theme-option selected" style="background: linear-gradient(135deg, #6C5CE7, #00CEFF);" onclick="changeTheme('default')"></div>
+                <div class="theme-option" style="background: linear-gradient(135deg, #2D3436, #636E72);" onclick="changeTheme('dark')"></div>
+                <div class="theme-option" style="background: linear-gradient(135deg, #D63031, #FD79A8);" onclick="changeTheme('red')"></div>
+                <div class="theme-option" style="background: linear-gradient(135deg, #00B894, #55EFC4);" onclick="changeTheme('green')"></div>
+                <div class="theme-option" style="background: linear-gradient(135deg, #0984E3, #74B9FF);" onclick="changeTheme('blue')"></div>
+            </div>
+        </div>
+        <div class="panel-section">
+            <h4>Zoom Level</h4>
+            <div class="zoom-controls">
+                <button class="zoom-btn" onclick="zoomOut()">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <span class="zoom-value" id="zoom-value">100%</span>
+                <button class="zoom-btn" onclick="zoomIn()">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="panel-section">
+            <h4>Background</h4>
+            <div class="bg-options">
+                <div class="bg-option selected" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');" onclick="changeBackground('tree1')"></div>
+                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2076&q=80');" onclick="changeBackground('tree2')"></div>
+                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');" onclick="changeBackground('forest')"></div>
+                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80');" onclick="changeBackground('leaves')"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Panel -->
+    <div class="panel" id="help-panel">
+        <div class="panel-header">
+            <h3>BST Visualizer Guide</h3>
+            <button class="panel-close" onclick="toggleHelp()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="panel-section">
+            <h4>Basic Operations</h4>
+            <ul>
+                <li style="color: #2D3436;"><strong>Insert:</strong> Add a node to the BST</li>
+                <li style="color: #2D3436;"><strong>Delete:</strong> Remove a node from the BST</li>
+                <li style="color: #2D3436;"><strong>Search:</strong> Find a node in the BST</li>
+                <li style="color: #2D3436;"><strong>Find Min/Max:</strong> Find minimum or maximum value</li>
+            </ul>
+        </div>
+        <div class="panel-section">
+            <h4>Traversals</h4>
+            <ul>
+                <li style="color: #2D3436;"><strong>Preorder:</strong> Root → Left → Right</li>
+                <li style="color: #2D3436;"><strong>Inorder:</strong> Left → Root → Right (sorted order)</li>
+                <li style="color: #2D3436;"><strong>Postorder:</strong> Left → Right → Root</li>
+                <li style="color: #2D3436;"><strong>Level Order:</strong> Breadth-first traversal</li>
+            </ul>
+        </div>
+        <div class="panel-section">
+            <h4>Advanced Features</h4>
+            <ul>
+                <li style="color: #2D3436;"><strong>Balance BST:</strong> Convert to a balanced BST</li>
+                <li style="color: #2D3436;"><strong>Find Sibling:</strong> Find node's sibling</li>
+                <li style="color: #2D3436;"><strong>Find Ancestors:</strong> Show all ancestors of a node</li>
+                <li style="color: #2D3436;"><strong>Find LCA:</strong> Find lowest common ancestor of two nodes</li>
+                <li style="color: #2D3436;"><strong>Diameter:</strong> Find distance between two nodes</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Message Box -->
+    <div id="message-box">
+        <div id="message-content"></div>
+        <button id="message-close" onclick="hideMessageBox()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="BST.js"></script>
+
+    <script>
+        // UI Control Functions
+        function startVisualizer() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('visualizer-content').style.display = 'flex';
+            document.getElementById('visualizer-content').style.flexDirection = 'column';
+            setupInteractionHandlers();
+            bst.render(); // Initial render of the BST
+        }
+
+        function goHome() {
+            document.getElementById('visualizer-content').style.display = 'none';
+            document.getElementById('welcome-page').style.display = 'flex';
+            closeAllPanels();
+            resetTransform(); // Reset zoom and pan on home
+        }
+
+        function toggleSettings() {
+            document.getElementById('settings-panel').classList.toggle('open');
+            document.getElementById('help-panel').classList.remove('open');
+        }
+
+        function toggleHelp() {
+            document.getElementById('help-panel').classList.toggle('open');
+            document.getElementById('settings-panel').classList.remove('open');
+        }
+
+        function closeAllPanels() {
+            document.getElementById('settings-panel').classList.remove('open');
+            document.getElementById('help-panel').classList.remove('open');
+        }
+
+        function changeTheme(theme) {
+            document.body.classList.remove('theme-default', 'theme-dark', 'theme-red', 'theme-green', 'theme-blue');
+            document.body.classList.add('theme-' + theme);
+            document.querySelectorAll('.theme-option').forEach(option => option.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        function changeBackground(bg) {
+            const bgUrl = event.target.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/)[1];
+            document.body.style.backgroundImage = `url(${bgUrl})`;
+            document.querySelectorAll('.bg-option').forEach(option => option.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        // Zoom and Pan Variables
+        window.scale = 1;
+        window.translateX = 0;
+        window.translateY = 0;
+        let pinchStartDist = 0;
+        let isPanning = false;
+        let startX = 0, startY = 0;
+
+        function zoomIn() {
+            window.scale = Math.min(5, window.scale + 0.1);
+            updateTransform();
+            bst.render(); // Re-render BST with new scale
+        }
+
+        function zoomOut() {
+            window.scale = Math.max(0.5, window.scale - 0.1);
+            updateTransform();
+            bst.render(); // Re-render BST with new scale
+        }
+
+        function resetTransform() {
+            window.scale = 1;
+            window.translateX = 0;
+            window.translateY = 0;
+            updateTransform();
+            bst.render();
+        }
+
+        function updateTransform() {
+            const treeContainer = document.getElementById('tree-container');
+            treeContainer.style.transform = `translate(${window.translateX}px, ${window.translateY}px) scale(${window.scale})`;
+            treeContainer.style.transformOrigin = 'center center';
+            document.getElementById('zoom-value').textContent = `${Math.round(window.scale * 100)}%`;
+        }
+
+        function hideMessageBox() {
+            document.getElementById('message-box').classList.remove('show');
+        }
+
+        // Interaction Handlers (Mouse and Touch)
+        function setupInteractionHandlers() {
+            const treeContainer = document.getElementById('tree-container');
+
+            // Mouse Events
+            treeContainer.addEventListener('mousedown', handleMouseStart);
+            treeContainer.addEventListener('mousemove', handleMouseMove);
+            treeContainer.addEventListener('mouseup', handleMouseEnd);
+            treeContainer.addEventListener('wheel', handleWheel);
+
+            // Touch Events
+            treeContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+            treeContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+            treeContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+            // Tooltip for Mobile
+            document.querySelectorAll('[data-tooltip]').forEach(btn => {
+                btn.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    const tooltip = btn.getAttribute('data-tooltip');
+                    const messageBox = document.getElementById('message-box');
+                    messageBox.classList.add('show', 'info');
+                    document.getElementById('message-content').textContent = tooltip;
+                    setTimeout(() => messageBox.classList.remove('show'), 2000);
+                });
+            });
+        }
+
+        // Mouse Interaction
+        function handleMouseStart(e) {
+            isPanning = true;
+            startX = e.clientX - window.translateX;
+            startY = e.clientY - window.translateY;
+        }
+
+        function handleMouseMove(e) {
+            if (!isPanning) return;
+            window.translateX = e.clientX - startX;
+            window.translateY = e.clientY - startY;
+            updateTransform();
+        }
+
+        function handleMouseEnd() {
+            isPanning = false;
+        }
+
+        function handleWheel(e) {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            window.scale = Math.max(0.5, Math.min(5, window.scale + delta));
+            updateTransform();
+            bst.render();
+        }
+
+        // Touch Interaction
+        function handleTouchStart(e) {
+            if (e.touches.length === 1) {
+                isPanning = true;
+                startX = e.touches[0].clientX - window.translateX;
+                startY = e.touches[0].clientY - window.translateY;
+            } else if (e.touches.length === 2) {
+                pinchStartDist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                isPanning = false;
+            }
+            e.preventDefault();
+        }
+
+        function handleTouchMove(e) {
+            if (e.touches.length === 1 && isPanning) {
+                window.translateX = e.touches[0].clientX - startX;
+                window.translateY = e.touches[0].clientY - startY;
+                updateTransform();
+            } else if (e.touches.length === 2) {
+                const currentDist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                const scaleChange = currentDist / pinchStartDist;
+                window.scale = Math.max(0.5, Math.min(5, window.scale * scaleChange));
+                pinchStartDist = currentDist;
+
+                // Adjust translation to zoom around pinch center
+                const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+                const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+                window.translateX = midX - (midX - window.translateX) * scaleChange;
+                window.translateY = midY - (midY - window.translateY) * scaleChange;
+
+                updateTransform();
+                bst.render();
+            }
+            e.preventDefault();
+        }
+
+        function handleTouchEnd(e) {
+            if (e.touches.length === 0) isPanning = false;
+            if (e.touches.length < 2) pinchStartDist = 0;
+        }
+
+        // Panel Click Handling
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.panel') && !e.target.closest('.floating-btn')) {
+                closeAllPanels();
+            }
+        });
+
+        document.querySelectorAll('.panel').forEach(panel => {
+            panel.addEventListener('click', (e) => e.stopPropagation());
+        });
+
+        // Initialize
+        setupMobileFeatures();
+    </script>
+</body>
+</html>

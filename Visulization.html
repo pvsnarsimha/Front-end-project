@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Structure Visualizations</title>
+   
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .container {
+            
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .algorithm-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s;
+        }
+        .algorithm-card:hover {
+            transform: translateY(-5px);
+        }
+        .algorithm-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .algorithm-content {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .algorithm-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        .algorithm-description {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: #555;
+            font-size: 16px;
+        }
+        .algorithm-details {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            border-radius: 0 5px 5px 0;
+        }
+        .algorithm-visual {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .algorithm-visual img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .algorithm-visual img:hover {
+            transform: scale(1.03);
+        }
+        .stack-animation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .stack-visual {
+            width: 150px;
+            background: #e0e0e0;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .stack-element {
+            width: 100%;
+            height: 40px;
+            background: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+            transition: all 0.5s;
+        }
+        .stack-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .stack-btn {
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .stack-btn:hover {
+            background: #3d8b40;
+        }
+        .visualize-button {
+            align-self: flex-end;
+            padding: 12px 28px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+        .visualize-button:hover {
+            background-color: #3d8b40;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .time-complexity {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+        }
+        .operation-list {
+            padding-left: 20px;
+        }
+        .operation-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Data Structure Visualizations</h1>
+        <p>Interactive demonstrations of fundamental data structures</p>
+    </div>
+
+    <div class="container">
+        <div class="algorithm-card">
+            <h2 class="algorithm-title">Binary Search Tree (BST)</h2>
+            <div class="algorithm-content">
+                <div class="algorithm-text">
+                    <p class="algorithm-description">
+                        A Binary Search Tree is a hierarchical data structure where each node has at most two children.
+                        It maintains the binary search property: left children are smaller and right children are larger
+                        than their parent. This enables efficient searching, insertion, and deletion operations.
+                    </p>
+                    <div class="algorithm-details">
+                        <strong>Key Operations:</strong>
+                        <ul class="operation-list">
+                            <li><strong>Insertion:</strong> O(log n) average, O(n) worst-case</li>
+                            <li><strong>Search:</strong> O(log n) average, O(n) worst-case</li>
+                            <li><strong>Deletion:</strong> O(log n) average, O(n) worst-case</li>
+                            <li><strong>Traversal:</strong> In-order (LNR), Pre-order (NLR), Post-order (LRN)</li>
+                        </ul>
+                        <p class="time-complexity">
+                            Balanced BSTs (AVL, Red-Black) maintain O(log n) operations through automatic balancing.
+                        </p>
+                    </div>
+                    <button class="visualize-button" onclick="window.location.href='./BinarySearch.html'">
+                        Interactive BST Visualization →
+                    </button>
+                </div>
+                <div class="algorithm-visual">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Binary_search_tree_example.gif" 
+                         alt="BST Operations Animation"
+                         title="BST Insertion and Search Animation">
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm-card">
+            <h2 class="algorithm-title">Stack</h2>
+            <div class="algorithm-content">
+                <div class="algorithm-text">
+                    <p class="algorithm-description">
+                        A Stack is a linear LIFO (Last-In-First-Out) structure that supports two fundamental operations:
+                        push (add to top) and pop (remove from top). It's used in function calls, expression evaluation,
+                        undo mechanisms, and depth-first search algorithms.
+                    </p>
+                    <div class="algorithm-details">
+                        <strong>Key Operations:</strong>
+                        <ul class="operation-list">
+                            <li><strong>Push:</strong> O(1) - Adds element to stack top</li>
+                            <li><strong>Pop:</strong> O(1) - Removes and returns top element</li>
+                            <li><strong>Peek/Top:</strong> O(1) - Returns top element without removal</li>
+                            <li><strong>isEmpty:</strong> O(1) - Checks if stack is empty</li>
+                        </ul>
+                        <p class="time-complexity">
+                            All operations are O(1) because they only affect the top element.
+                        </p>
+                    </div>
+                    <button class="visualize-button" onclick="window.location.href='Stack.html'">
+                        Interactive Stack Visualization →
+                    </button>
+                </div>
+                <div class="algorithm-visual">
+                    <div class="stack-animation-container">
+                        <img src="https://i.imgur.com/JXQJj5Z.gif" 
+                             alt="Stack Operations Animation"
+                             title="Stack Push and Pop Animation"
+                             style="max-height: 300px;">
+                        <div class="stack-visual" id="interactive-stack">
+                            <!-- Stack elements will be added here by JavaScript -->
+                        </div>
+                        <div class="stack-controls">
+                            <button class="stack-btn" onclick="pushToStack()">Push</button>
+                            <button class="stack-btn" onclick="popFromStack()">Pop</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let stackCounter = 1;
+        const stackContainer = document.getElementById('interactive-stack');
+        
+        function pushToStack() {
+            const element = document.createElement('div');
+            element.className = 'stack-element';
+            element.textContent = stackCounter++;
+            element.style.opacity = '0';
+            stackContainer.prepend(element);
+            
+            setTimeout(() => {
+                element.style.opacity = '1';
+            }, 10);
+        }
+        
+        function popFromStack() {
+            const elements = stackContainer.getElementsByClassName('stack-element');
+            if (elements.length > 0) {
+                const element = elements[0];
+                element.style.transform = 'translateY(-20px)';
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    element.remove();
+                }, 500);
+            }
+        }
+        
+        // Initialize with 3 stack elements
+        for (let i = 0; i < 3; i++) {
+            pushToStack();
+        }
+    </script>
+</body>
+</html>
