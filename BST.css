@@ -720,3 +720,43 @@ line {
     opacity: 1;
     visibility: visible;
 }
+.landscape-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.landscape-option {
+    padding: 8px 16px;
+    background: #6fdb1098;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.landscape-option:hover {
+    background: #ddd;
+}
+
+.landscape-option.selected {
+    background: var(--primary-color, #6e48aa);
+    color: white;
+}
+/* Node styles */
+.node {
+    fill: var(--node-color, #007bff);
+    stroke: #000;
+    stroke-width: 1;
+}
+
+/* Ensure text is readable */
+text {
+    fill: black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+/* Adjust for radial layout */
+#bstTree.radial .node {
+    transition: all 0.5s ease;
+}

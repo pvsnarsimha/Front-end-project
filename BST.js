@@ -1,7 +1,7 @@
-// BST.js
 $(function () { $('[data-toggle="tooltip"]').tooltip(); });
 let animationQueue = Promise.resolve();
 let currentZoom = 100;
+let currentLayout = 'Vertical'; // Default layout
 
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -366,7 +366,6 @@ function changeTheme(theme) {
             root.style.setProperty('--delete-color', '#dc3545');
     }
 }
-
 function changeBackground(bg) {
     // Remove selected class from all background options
     document.querySelectorAll('.bg-option').forEach(option => {
@@ -392,7 +391,17 @@ function changeBackground(bg) {
             root.style.setProperty('--bg-image', "url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')");
     }
 }
+function changeLandscape(layout) {
+    document.querySelectorAll('.landscape-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+    event.target.classList.add('selected');
 
+    currentLayout = layout;
+    bst.render();
+
+    displayMessage(`Tree layout changed to ${layout}.`, 'info');
+}
 function zoomIn() {
     if (currentZoom < 150) {
         currentZoom += 10;
@@ -1208,9 +1217,27 @@ class BST {
     }
     render() {
         let svg = document.getElementById("bstTree");
+        svg.setAttribute("width", currentLayout === 'radial' ? "1000" : "1000");
+        svg.setAttribute("height", currentLayout === 'radial' ? "600" : "600");
+        svg.setAttribute("viewBox", currentLayout === 'radial' ? "0 0 1000 600" : "0 0 1000 600");
         svg.innerHTML = "";
         this.positions.clear();
-        if (this.root) this._renderNode(svg, this.root, 500, 50, 250);
+        if (this.root) {
+            switch (currentLayout) {
+                case 'standard':
+                    this._renderStandard(svg, this.root, 500, 50, 250);
+                    break;
+                case 'vertical':
+                    this._renderVertical(svg, this.root, 500, 50, 100);
+                    break;
+                case 'horizontal':
+                    this._renderHorizontal(svg, this.root, 50, 300, 100);
+                    break;
+                case 'radial':
+                    this._renderRadial(svg, this.root, 500, 300, 0, 2 * Math.PI, 150);
+                    break;
+            }
+        }
         let outputText = document.createElementNS("http://www.w3.org/2000/svg", "text");
         outputText.setAttribute("id", "output-text");
         outputText.setAttribute("x", "500");
@@ -1218,28 +1245,76 @@ class BST {
         outputText.setAttribute("text-anchor", "middle");
         svg.appendChild(outputText);
     }
-
-    _renderNode(svg, node, x, y, offset) {
+    
+    _renderStandard(svg, node, x, y, offset) {
         if (!node) return;
         this.positions.set(node.value, { x, y });
         if (node.left) {
             this._drawLine(svg, x, y, x - offset, y + 70);
-            this._renderNode(svg, node.left, x - offset, y + 70, offset / 2);
+            this._renderStandard(svg, node.left, x - offset, y + 70, offset / 2);
         }
         if (node.right) {
             this._drawLine(svg, x, y, x + offset, y + 70);
-            this._renderNode(svg, node.right, x + offset, y + 70, offset / 2);
+            this._renderStandard(svg, node.right, x + offset, y + 70, offset / 2);
         }
         this._drawNode(svg, x, y, node.value);
     }
-
+    
+    _renderVertical(svg, node, x, y, offset) {
+        if (!node) return;
+        this.positions.set(node.value, { x, y });
+        if (node.left) {
+            this._drawLine(svg, x, y, x, y + offset);
+            this._renderVertical(svg, node.left, x, y + offset, offset);
+        }
+        if (node.right) {
+            this._drawLine(svg, x, y + offset, x, y + 2 * offset);
+            this._renderVertical(svg, node.right, x, y + 2 * offset, offset);
+        }
+        this._drawNode(svg, x, y, node.value);
+    }
+    
+    _renderHorizontal(svg, node, x, y, offset) {
+        if (!node) return;
+        this.positions.set(node.value, { x, y });
+        if (node.left) {
+            this._drawLine(svg, x, y, x + offset, y);
+            this._renderHorizontal(svg, node.left, x + offset, y, offset);
+        }
+        if (node.right) {
+            this._drawLine(svg, x + offset, y, x + 2 * offset, y);
+            this._renderHorizontal(svg, node.right, x + 2 * offset, y, offset);
+        }
+        this._drawNode(svg, x, y, node.value);
+    }
+    
+    _renderRadial(svg, node, cx, cy, startAngle, endAngle, radius) {
+        if (!node) return;
+        const angle = (startAngle + endAngle) / 2;
+        const x = cx + radius * Math.cos(angle);
+        const y = cy + radius * Math.sin(angle);
+        this.positions.set(node.value, { x, y });
+    
+        if (node.left || node.right) {
+            const angleRange = (endAngle - startAngle) / 2;
+            if (node.left) {
+                this._drawLine(svg, cx, cy, x, y);
+                this._renderRadial(svg, node.left, cx, cy, startAngle, startAngle + angleRange, radius - 50);
+            }
+            if (node.right) {
+                this._drawLine(svg, cx, cy, x, y);
+                this._renderRadial(svg, node.right, cx, cy, startAngle + angleRange, endAngle, radius - 50);
+            }
+        }
+        this._drawNode(svg, x, y, node.value);
+    }
+    
     _drawNode(svg, x, y, value) {
         let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
         circle.setAttribute("cx", x); circle.setAttribute("cy", y); circle.setAttribute("r", 20);
         circle.classList.add("node");
         svg.appendChild(circle);
-        
-        // Add floating animation
+    
         let floatAnimate = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
         floatAnimate.setAttribute("attributeName", "transform");
         floatAnimate.setAttribute("type", "translate");
@@ -1247,13 +1322,13 @@ class BST {
         floatAnimate.setAttribute("dur", "3s");
         floatAnimate.setAttribute("repeatCount", "indefinite");
         circle.appendChild(floatAnimate);
-
+    
         let text = document.createElementNS("http://www.w3.org/2000/svg", "text");
         text.setAttribute("x", x); text.setAttribute("y", y + 5);
         text.setAttribute("text-anchor", "middle"); text.textContent = value;
         svg.appendChild(text);
     }
-
+    
     _drawLine(svg, x1, y1, x2, y2) {
         let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line.setAttribute("x1", x1); line.setAttribute("y1", y1);

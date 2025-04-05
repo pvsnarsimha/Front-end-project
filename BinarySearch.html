@@ -20,7 +20,7 @@
     </div>
 
     <!-- Main Visualizer Content -->
-    <div id="visualizer-content">
+    <div id="visualizer-content" class="hidden">
         <div class="visualizer-header">
             <h2 style="color: white;">NEO BST VISUALIZER</h2>
             <p>Interactive visualization of Binary Search Tree operations with real-time animations and advanced features</p>
@@ -110,11 +110,11 @@
             <div class="input-group" style="margin-top: 1.5rem;">
                 <div class="input-field">
                     <label for="nodeValue1">First Node</label>
-                    <input type="number" id="nodeValue1" placeholder="Enter first node for LCA or to findDiameter">
+                    <input type="number" id="nodeValue1" placeholder="Enter first node for LCA or Diameter">
                 </div>
                 <div class="input-field">
                     <label for="nodeValue2">Second Node</label>
-                    <input type="number" id="nodeValue2" placeholder="Enter second node for LCA or to findDiameter">
+                    <input type="number" id="nodeValue2" placeholder="Enter second node for LCA or Diameter">
                 </div>
                 <button class="action-btn btn-lca" onclick="findLCA()" data-tooltip="Find lowest common ancestor">
                     <i class="fas fa-handshake"></i> Find LCA
@@ -125,7 +125,6 @@
         <!-- Tree Visualization -->
         <div class="tree-container">
             <svg id="bstTree">
-       
                 <text id="output-text" x="50%" y="95%" text-anchor="middle"></text>
             </svg>
         </div>
@@ -152,15 +151,14 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        
+
         <div class="panel-section">
-            <h4>Theme Color</h4>
-            <div class="theme-options">
-                <div class="theme-option selected" style="background: linear-gradient(135deg, #6C5CE7, #00CEFF);" onclick="changeTheme('default')"></div>
-                <div class="theme-option" style="background: linear-gradient(135deg, #2D3436, #636E72);" onclick="changeTheme('dark')"></div>
-                <div class="theme-option" style="background: linear-gradient(135deg, #D63031, #FD79A8);" onclick="changeTheme('red')"></div>
-                <div class="theme-option" style="background: linear-gradient(135deg, #00B894, #55EFC4);" onclick="changeTheme('green')"></div>
-                <div class="theme-option" style="background: linear-gradient(135deg, #0984E3, #74B9FF);" onclick="changeTheme('blue')"></div>
+            <h4>Tree Layout</h4>
+            <div class="landscape-options">
+            <div class="landscape-option" onclick="changeLandscape('standard')">Standard</div>
+        <div class="landscape-option" onclick="changeLandscape('vertical')">Vertical</div>
+        <div class="landscape-option" onclick="changeLandscape('horizontal')">Horizontal</div>
+        <div class="landscape-option" onclick="changeLandscape('radial')">Radial</div>
             </div>
         </div>
 
@@ -176,18 +174,6 @@
                 </button>
             </div>
         </div>
-
-        <div class="panel-section">
-            <h4>Background</h4>
-            <div class="bg-options">
-                <div class="bg-option selected" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');" onclick="changeBackground('tree1')"></div>
-                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80');" onclick="changeBackground('tree2')"></div>
-                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');" onclick="changeBackground('forest')"></div>
-                <div class="bg-option" style="background-image: url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');" onclick="changeBackground('leaves')"></div>
-            </div>
-        </div>
-    </div>
-
     <!-- Help Panel -->
     <div class="panel" id="help-panel">
         <div class="panel-header">
@@ -225,8 +211,8 @@
                 <li style="color: #2D3436;"><strong>Find Ancestors:</strong> Show all ancestors of a node</li>
                 <li style="color: #2D3436;"><strong>Find LCA:</strong> Find lowest common ancestor of two nodes</li>
                 <p style="color: #2D3436;">Note:</p>
-                <p style="color: #2D3436;"><strong>two input boxes which is leftside to FindLCA Button it is applicable for both LCA(Lowest Common ancestor) and findDiameter</strong></p>
-                <li style="color: #2D3436;"><strong>Diameter:</strong>Find Diameter between two nodes</li>
+                <p style="color: #2D3436;"><strong>Two input boxes to the left of the Find LCA button are applicable for both LCA (Lowest Common Ancestor) and Find Diameter</strong></p>
+                <li style="color: #2D3436;"><strong>Diameter:</strong> Find distance between two nodes</li>
             </ul>
         </div>
 
@@ -255,19 +241,17 @@
     <script src="BST.js"></script>
     
     <script>
-        // UI Control Functions (keep these separate from BST.js)
+        // UI Control Functions
         function startVisualizer() {
             document.getElementById('welcome-page').style.display = 'none';
             document.getElementById('visualizer-content').style.display = 'block';
+            bst.render(); // Render the initial tree layout
         }
 
         function goHome() {
-    // Navigate to Visualization.html instead of toggling visibility
-    window.location.href = 'Visulization.html';
-    
-    // Optional: Close any open panels before navigating
-    closeAllPanels();
-}
+            window.location.href = 'Visulization.html';
+            closeAllPanels();
+        }
 
         function toggleSettings() {
             document.getElementById('settings-panel').classList.toggle('open');
@@ -284,14 +268,17 @@
             document.getElementById('help-panel').classList.remove('open');
         }
 
+        // Landscape-specific initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial layout as 'vertical' and mark it as selected
+            const initialLayout = 'vertical';
+            changeLandscape(initialLayout); // Trigger initial layout
+            document.querySelector(`.landscape-option[data-layout="${initialLayout}"]`).classList.add('selected');
+        });
+
         function changeTheme(theme) {
-            // Remove all theme classes first
             document.body.classList.remove('theme-default', 'theme-dark', 'theme-red', 'theme-green', 'theme-blue');
-            
-            // Add the selected theme class
             document.body.classList.add('theme-' + theme);
-            
-            // Update selected state for theme options
             document.querySelectorAll('.theme-option').forEach(option => {
                 option.classList.remove('selected');
             });
@@ -299,8 +286,6 @@
         }
 
         function changeBackground(bg) {
-            // This would change the background image
-            // Implementation depends on how you want to handle backgrounds
             document.querySelectorAll('.bg-option').forEach(option => {
                 option.classList.remove('selected');
             });
@@ -308,7 +293,6 @@
         }
 
         function zoomIn() {
-            // Zoom in implementation
             const treeContainer = document.querySelector('.tree-container');
             let currentZoom = parseFloat(treeContainer.style.transform?.replace('scale(', '')?.replace(')', '')) || 1;
             currentZoom += 0.1;
@@ -317,19 +301,11 @@
         }
 
         function zoomOut() {
-            // Zoom out implementation
             const treeContainer = document.querySelector('.tree-container');
             let currentZoom = parseFloat(treeContainer.style.transform?.replace('scale(', '')?.replace(')', '')) || 1;
             currentZoom = Math.max(0.5, currentZoom - 0.1);
             treeContainer.style.transform = `scale(${currentZoom})`;
             document.getElementById('zoom-value').textContent = `${Math.round(currentZoom * 100)}%`;
-        }
-
-        function resetZoom() {
-            // Reset zoom implementation
-            const treeContainer = document.querySelector('.tree-container');
-            treeContainer.style.transform = 'scale(1)';
-            document.getElementById('zoom-value').textContent = '100%';
         }
 
         function toggleFullScreen() {
@@ -338,9 +314,7 @@
                     showMessage('Error attempting to enable fullscreen: ' + err.message, 'error');
                 });
             } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
+                if (document.exitFullscreen) document.exitFullscreen();
             }
         }
 
@@ -350,27 +324,21 @@
             messageBox.classList.add(type);
             document.getElementById('message-content').textContent = message;
             messageBox.classList.add('show');
-            
-            setTimeout(() => {
-                messageBox.classList.remove('show');
-            }, 3000);
+            setTimeout(() => messageBox.classList.remove('show'), 3000);
         }
 
         function hideMessageBox() {
             document.getElementById('message-box').classList.remove('show');
         }
 
-        // Close message box when clicking the close button
         document.getElementById('message-close').addEventListener('click', hideMessageBox);
 
-        // Close panels when clicking outside
         document.addEventListener('click', function(event) {
             if (!event.target.closest('.panel') && !event.target.closest('.floating-btn')) {
                 closeAllPanels();
             }
         });
 
-        // Prevent panels from closing when clicking inside them
         document.querySelectorAll('.panel').forEach(panel => {
             panel.addEventListener('click', function(event) {
                 event.stopPropagation();
