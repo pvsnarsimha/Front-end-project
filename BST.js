@@ -1,7 +1,7 @@
 $(function () { $('[data-toggle="tooltip"]').tooltip(); });
 let animationQueue = Promise.resolve();
 let currentZoom = 100;
-let currentLayout = 'Vertical'; // Default layout
+let currentLayout = 'standard'; // Default layout
 
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
